@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './assets/css/reset.css'
+import '../assets/css/reset.css'
 function MyWeb() {
     return (
         <div className="wrap" style={{
@@ -8,7 +8,7 @@ function MyWeb() {
             overflow: 'auto',
             border:'1px solid red'
         }}>
-             <h1>jie</h1>
+             <h1>jie1</h1>
         </div>
     )
 }
