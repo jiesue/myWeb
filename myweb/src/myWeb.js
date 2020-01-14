@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '@/src/assets/css/reset.css'
+import './assets/css/reset.css'
 function MyWeb() {
     return (
         <div className="wrap" style={{
