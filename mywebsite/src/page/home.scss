@@ -1,0 +1,15 @@
+@import '@/assets/css/variable.scss';
+
+.wrap {
+    width   : 100%;
+    height  : 100%;
+    min-width: 1200px;
+    overflow: auto;
+    border  : $b;
+    background: {
+        image:url('../assets/img/top_bg.jpg');
+        repeat:no-repeat;
+        position: top center;
+    };
+    // border  : 1px solid red;
+}
