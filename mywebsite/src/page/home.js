@@ -1,0 +1,16 @@
+import React, { Component } from 'react';
+// import '../assets/css/reset.css'
+function MyWeb() {
+    return (
+        <div className="wrap" style={{
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+            border:'1px solid red'
+        }}>
+             <h1>jie1</h1>∏
+        </div>
+    )
+}
+
+export default MyWeb;
