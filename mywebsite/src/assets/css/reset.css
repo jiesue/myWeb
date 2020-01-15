@@ -108,6 +108,7 @@ ins {
     box-sizing: border-box;
     overflow: hidden;
 }
-
+/* include iconfont */
+@import './iconfont/iconfont.css'
 
 /* @import '~antd/dist/antd.css'; */
