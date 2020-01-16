@@ -10,7 +10,6 @@ class Header extends Component {
         return (
             <div className="header">
                 <div className="con">
-                    <img style={{display:'block',zIndex:1111,border:'1px solid red', width: '100px', height: '100px' }} src={require('@/assets/img/menu-bg-1.jpg')}/>
                     <div className="nav-w">
                         <div className="side left-side"></div>
                         <div className="side right-side"></div>

@@ -11,7 +11,6 @@ function MyWeb() {
         <div className="wrap">
             <Header />
             <Banner />
-            <Button type="primary">Button</Button>
         </div>
     )
 }
