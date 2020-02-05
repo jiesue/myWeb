@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { /* Component */ } from 'react';
 // import Button from 'antd/lib/button';
-import { Button } from 'antd';
+// import { Button } from 'antd';
 import './home.scss'
 
 import Header from "@/components/header";

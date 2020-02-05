@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Home from '@/page/home'
-import { BrowserRouter as Router, Route, Switch, NavLink, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch/* , NavLink, Redirect */ } from "react-router-dom";
 import '@/assets/css/reset.css';
 import '@/assets/css/variable.scss';
 

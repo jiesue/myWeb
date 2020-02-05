@@ -23,7 +23,7 @@ class Banner extends Component {
                 <Carousel effect="fade" autoplay>
                     {
                         this.state.bannerList.map(item =>{
-                            return (<div> <a href={item.link}> <img src={item.src}/></a></div>)
+                            return (<div key={item.link}> <a href={item.link} > <img src={item.src}/></a></div>)
                         })
                     }
                 </Carousel>

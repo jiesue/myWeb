@@ -22,7 +22,7 @@ function resolve(dir) {
 
 module.exports = function override(config, env) {
 
-    // do stuff with the webpack config... 按需引入antd-css的配置
+    // do stuff with the webpack config... 按需引入antd-css的配置 react-app-rewired2.x以后，不再支持injectBabelPlugin的方式，需要安装customize-cra
     config = injectBabelPlugin(['import', { libraryName: 'antd', style: 'css' }], config);
 
     config.resolve.alias = {

@@ -66,6 +66,9 @@ select {
     font-variant: normal;
     font-weight: normal;
     line-height: normal;
+    outline: none;
+    border:none;
+    
 }
 
 button {

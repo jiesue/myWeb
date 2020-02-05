@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './index.scss'
+import BaiduSearch from '../baiduSearch'
 import { Row, Col } from 'antd';
 class Header extends Component {
     constructor(props) {
@@ -32,7 +33,11 @@ class Header extends Component {
                                     </div>
                                 </Col>
                                 <Col span={8}><div className="center">2</div></Col>
-                                <Col span={8}><div className="right">3</div></Col>
+                                <Col span={8}>
+                                    <div className="right">
+                                        <BaiduSearch />
+                                    </div>
+                                </Col>
                             </Row>
                         </div>
                     </div>
