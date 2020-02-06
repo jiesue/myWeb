@@ -45,12 +45,11 @@
             background: rgb(203, 229, 222);
             li{
                 line-height:30px;
-                border:$b;
                 font-size:16px;
                 cursor:pointer;
                 &:hover{
-                    background:rgb(203, 229, 222);
-                    color:red;
+                    background:rgb(119, 255, 208);
+                    color:rgb(0, 0, 0);
                 }
             }
         }

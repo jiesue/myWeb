@@ -1,7 +1,7 @@
 import axios from "axios";
 import api from "@/api";
 import configObj from "@/config";
-
+import { message } from 'antd';
 const service = axios.create({
     timeout: 50000,
     headers: {
@@ -23,13 +23,11 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     res => {
         if (!res) {
-            vue.$Message.warning({
-                content: '服务器无响应'
-            })
+            message.error('服务器无响应');
         }
 
-        if (res.status != 200 && res.status != 600) { //status =200 代表响应成功
-            $alert('提示', res.message)
+        if (res.status != 200) { //status =200 代表响应成功
+            message.error('提示' + res.message)
             return Promise.reject(res)
         } else {
             // let msg = res.data.message;
@@ -54,7 +52,7 @@ service.interceptors.response.use(
         console.log(error.message);
 
         if (error.message.includes('timeout')) { // 判断请求异常信息中是否含有超时timeout字符串
-            $alert('网络超时')
+            message.error('网络超时')
             return Promise.reject(error); // reject这个错误信息
         }
         return Promise.reject(error);
@@ -70,11 +68,11 @@ service.interceptors.response.use(
  * @return {promise}
  */
 const Ajax = async (apiName, params, config) => {
-    if (typeof apiConfig[apiName] !== "object") { //检查 方法名是否写错
+    if (typeof api[apiName] !== "object") { //检查 方法名是否写错
         throw new Error("调用api函数函数错误，请检查函数名称是否错误" + apiName);
     }
 
-    let newConfig = JSON.parse(JSON.stringify(apiConfig[apiName])); //深拷贝方法名
+    let newConfig = JSON.parse(JSON.stringify(api[apiName])); //深拷贝方法名
 
     //?????
     const { headers = [] } = newConfig;
@@ -85,15 +83,14 @@ const Ajax = async (apiName, params, config) => {
         });
     }
 
-    newConfig.params = Object.assign({}, api[apiName], params || {}) //合并参数
+    newConfig.params = Object.assign({}, api[apiName].params,params || {}) //合并参数
 
     /* 
      configObj[newConfig.interFaceType] : url配置中有对应的key  如：jie:'/jie' 则API配置中这样  interFaceType:'jie' 用于代理
-    
-    
     */
     if (newConfig.interFaceType && configObj[newConfig.interFaceType]) {
         newConfig.url = configObj[newConfig.interFaceType] + "/" + newConfig.url;
+    }else if(newConfig.interFaceType=='full'){
     } else {
         (!process.client) && (newConfig.url = configObj.baseUrl + newConfig.url)
     }

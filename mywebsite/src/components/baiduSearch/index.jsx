@@ -69,15 +69,17 @@ class SearchCom extends Component {
         // this.refs.input.value = item;
     }
     handleTipsClick = (item) => {
-        alert(111)
-        // window.open('https://www.baidu.com/s?wd=' + item, '_blank');
+
         this.setState({ val: item });
         this.refs.input.focus();
     }
     handleBlur = () => {
-        this.setState({
-            arr: []
-        })
+        setTimeout(() => {
+            this.setState({
+                arr: []
+            })
+        }, 300);
+
     }
     render() {
         return (
@@ -85,11 +87,12 @@ class SearchCom extends Component {
 
                 <img className="baidu-log" src="https://www.baidu.com/img/pc_1c6e30772d5e4103103bd460913332f9.png" alt="jie"></img>
                 <div className="search-area">
-                    <input type="text" ref='input' onBlur={this.handleBlur} defaultValue={this.state.val} onChange={this.handleChange}  onKeyDown={this.handleKeyDown} className='form-control' placeholder='please input your keyword' />
+                    <input type="text" ref='input' onBlur={this.handleBlur} value={this.state.val} onChange={this.handleChange} onKeyDown={this.handleKeyDown} className='form-control' placeholder='please input your keyword' />
                     {
+
                         this.state.arr.length > 0 && <ul className='list-group'>
                             {this.state.arr.map((item, key) => {
-                                return <li onClick={(event) => this.handleTipsClick(item)} onMouseEnter={(event) => this.handleMouseEnter(key, item, event)} className={key === this.state.index ? 'list-group-item active' : "list-group-item"} key={key}>{item}</li>
+                                return <li onClick={() => this.handleTipsClick(item)} className={key === this.state.index ? 'list-group-item active' : "list-group-item"} key={key}>{item}</li>
                             })}
                         </ul>
                     }
