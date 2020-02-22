@@ -36,7 +36,7 @@ class Header extends Component {
                     </section>
 
                     <div className="weather">
-                        <iframe scrolling="no" src="https://tianqiapi.com/api.php?style=tr&skin=grape&city=广州" frameborder="0" width="300" height="190" allowtransparency="true"></iframe>˝
+                        <iframe title="天气" scrolling="no" src="https://tianqiapi.com/api.php?style=tr&skin=grape&city=广州" frameborder="0" width="300" height="190" allowtransparency="true"></iframe>˝
                     </div>
                     <div className="nav-w">
                         <div className="side left-side"></div>

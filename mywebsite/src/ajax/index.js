@@ -26,7 +26,7 @@ service.interceptors.response.use(
             message.error('服务器无响应');
         }
 
-        if (res.status != 200) { //status =200 代表响应成功
+        if (res.status !== 200) { //status =200 代表响应成功
             message.error('提示' + res.message)
             return Promise.reject(res)
         } else {
@@ -90,7 +90,7 @@ const Ajax = async (apiName, params, config) => {
     */
     if (newConfig.interFaceType && configObj[newConfig.interFaceType]) {
         newConfig.url = configObj[newConfig.interFaceType] + "/" + newConfig.url;
-    }else if(newConfig.interFaceType=='full'){
+    }else if(newConfig.interFaceType==='full'){
     } else {
         (!process.client) && (newConfig.url = configObj.baseUrl + newConfig.url)
     }
