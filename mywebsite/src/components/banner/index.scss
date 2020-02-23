@@ -7,7 +7,9 @@
     width : 1200px;
     height: 400px;
     margin: 20px auto;
-    border: $b;
+    border-radius: 6px;
+    overflow: hidden;
+    // border: $b;
 }
 
 /* For demo */

@@ -21,22 +21,22 @@ class Header extends Component {
             <div className="header">
                 <div className="con">
 
-                    <section class="stage">
-                        <figure class="ball">
-                            <span class="shadow"></span>
-                            <span class="eight"></span>
+                    <section className="stage">
+                        <figure className="ball">
+                            <span className="shadow"></span>
+                            <span className="eight"></span>
                         </figure>
                     </section>
-                    <section class="stage2">
-                        <figure class="ball">
-                            <span class="shadow"></span>
-                            {/* <span class="eight"></span> */}
-                            <span class="iris"></span>
+                    <section className="stage2">
+                        <figure className="ball">
+                            <span className="shadow"></span>
+                            {/* <span className="eight"></span> */}
+                            <span className="iris"></span>
                         </figure>
                     </section>
 
                     <div className="weather">
-                        <iframe title="天气" scrolling="no" src="https://tianqiapi.com/api.php?style=tr&skin=grape&city=广州" frameborder="0" width="300" height="190" allowtransparency="true"></iframe>˝
+                        <iframe title="天气" scrolling="no" src="https://tianqiapi.com/api.php?style=tr&skin=grape&city=广州" frameBorder="0" width="300" height="190" allowtransparency="true"></iframe>˝
                     </div>
                     <div className="nav-w">
                         <div className="side left-side"></div>
@@ -62,7 +62,25 @@ class Header extends Component {
                                         </div>
                                     </div>
                                 </Col>
-                                <Col span={8}><div className="center">2</div></Col>
+                                <Col span={8}>
+                                    <div className="center">
+                                        <div className="item">
+                                            <a href="/"> <span className=''>导航0</span></a>
+                                        </div>
+                                        <div className="item">
+                                            <a href="/"> <span className=''>导航1</span></a>
+                                        </div>
+                                        <div className="item">
+                                            <a href="/"> <span className=''>导航2</span></a>
+                                        </div>
+                                        <div className="item">
+                                            <a href="/"> <span className=''>导航3</span></a>
+                                        </div>
+                                        <div className="item">
+                                            <a href="/"> <span className=''>导航4</span></a>
+                                        </div>
+                                    </div>
+                                </Col>
                                 <Col span={8}>
                                     <div className="right">
                                         <BaiduSearch />

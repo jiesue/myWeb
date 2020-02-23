@@ -1,0 +1,19 @@
+@import "@/assets/css/variable.scss";
+
+.section1 {
+  width: 100%;
+
+  border: $b;
+  .con {
+    width: 1200px;
+    height: 600px;
+    margin: auto;
+    display: flex;
+    .left{
+        width: 600px;
+        height: 600px;
+        border: $b;
+        
+    }
+  }
+}

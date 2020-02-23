@@ -62,7 +62,7 @@ class SearchCom extends Component {
     }
     componentDidMount() {
         //生命周期，在组件加载完成后，让input聚焦 (focus)
-        this.refs.input.focus();
+        // this.refs.input.focus();
     }
     handleMouseEnter = (key, item, event) => {
         // this.setState({ index: key, val: item });
