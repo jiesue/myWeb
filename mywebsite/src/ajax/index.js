@@ -74,23 +74,25 @@ const Ajax = async (apiName, params, config) => {
 
     let newConfig = JSON.parse(JSON.stringify(api[apiName])); //深拷贝方法名
 
-    //?????
+    //存headers
     const { headers = [] } = newConfig;
+    //清空
     newConfig.headers = {};
+    //再循环遍历复制 意义何在？？
     if (headers.length > 0) {
         headers.forEach(({ key, value }) => {
             newConfig.headers[key] = value;
         });
     }
 
-    newConfig.params = Object.assign({}, api[apiName].params,params || {}) //合并参数
+    newConfig.params = Object.assign({}, api[apiName].params, params || {}) //合并参数
 
     /* 
      configObj[newConfig.interFaceType] : url配置中有对应的key  如：jie:'/jie' 则API配置中这样  interFaceType:'jie' 用于代理
     */
     if (newConfig.interFaceType && configObj[newConfig.interFaceType]) {
         newConfig.url = configObj[newConfig.interFaceType] + "/" + newConfig.url;
-    }else if(newConfig.interFaceType==='full'){
+    } else if (newConfig.interFaceType === 'full') {
     } else {
         (!process.client) && (newConfig.url = configObj.baseUrl + newConfig.url)
     }
