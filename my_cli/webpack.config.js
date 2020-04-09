@@ -1,13 +1,13 @@
 const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 module.exports = {
-  // entry: './src/main.js', //单个入口
-  entry: {//多个入口
-    app: './src/main.js',
-    vendors: './src/vendors.js'
-  },
+  entry: './src/main.js', //单个入口
+  // entry: {//多个入口
+  //   app: './src/main.js',
+  //   vendors: './src/vendors.js'
+  // },
   output: {
-    filename: '[name].js',
+    filename: 'app.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
