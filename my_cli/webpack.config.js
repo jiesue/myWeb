@@ -22,7 +22,6 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              // modules: true
               presets: [
                 "@babel/env"//转换es6语法
               ]
