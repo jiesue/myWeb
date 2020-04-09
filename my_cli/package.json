@@ -2,12 +2,12 @@
   "name": "my_cli",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js", 
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open --mode development"
+    "start": "webpack-dev-server --open --mode development",
+    "build": "NODE_ENV=production webpack"
   },
-
   "keywords": [],
   "author": "",
   "license": "ISC",
