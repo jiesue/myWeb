@@ -31,17 +31,17 @@ module.exports = {
   plugins: [
     new HtmlWebPackPlugin({
       title: 'react app1',
-      filename: 'index1.html',
+      filename: 'index.html',
       template: './src/index.html',
-      chunks: ['manifest', 'vendor', 'app']
+      // chunks: ['manifest', 'vendor', 'app']
       //vendor 是指提取涉及 node_modules 中的公共模块；
       //manifest 是对 vendor 模块做的缓存；
     }),
-    new HtmlWebPackPlugin({
-      title: 'react app2',
-      filename: 'index2.html',
-      template: './src/index.html',
-      chunks: ['manifest', 'vendor', 'vendors']
-    })
+    // new HtmlWebPackPlugin({
+    //   title: 'react app2',
+    //   filename: 'index2.html',
+    //   template: './src/index.html',
+    //   chunks: ['manifest', 'vendor', 'vendors']
+    // })
   ]
 };
