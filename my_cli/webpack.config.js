@@ -2,19 +2,33 @@ const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
-  entry: './src/main.js',
+  mode: 'development',
+  entry: './src/main.js', //单个入口
+  // entry: {//多个入口
+  //   app: './src/main.js',
+  //   vendors: './src/vendors.js'
+  // },
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: 'app.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        exclude: /node_modules/,//排除转换目录
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              // modules: true
+              presets: [
+                "@babel/env"//转换es6语法
+              ]
+            }
+          }
+        ]
       },
       {
         test: /\.html$/,
@@ -51,7 +65,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      title: 'react app',
+      title: 'react app1',
       filename: 'index.html',
       template: './src/index.html'
     }),
