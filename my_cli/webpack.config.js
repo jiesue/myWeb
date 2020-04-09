@@ -1,13 +1,13 @@
 const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 module.exports = {
-  entry: './src/main.js', //单个入口
-  // entry: {//多个入口
-  //   app: './src/main.js',
-  //   vendors: './src/vendors.js'
-  // },
+  // entry: './src/main.js', //单个入口
+  entry: {//多个入口
+    app: './src/main.js',
+    vendors: './src/vendors.js'
+  },
   output: {
-    filename: 'app.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
@@ -25,23 +25,48 @@ module.exports = {
         use: {
           loader: 'html-loader'
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+          }
+        ]
+      },
+      {
+        test: /\.(scss|sass)$/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+          },
+          {
+            loader: "sass-loader",
+          }
+        ]
       }
     ]
   },
   plugins: [
     new HtmlWebPackPlugin({
       title: 'react app1',
-      filename: 'index.html',
+      filename: 'index1.html',
       template: './src/index.html',
-      // chunks: ['manifest', 'vendor', 'app']
+      chunks: ['manifest', 'vendor', 'app']
       //vendor 是指提取涉及 node_modules 中的公共模块；
       //manifest 是对 vendor 模块做的缓存；
     }),
-    // new HtmlWebPackPlugin({
-    //   title: 'react app2',
-    //   filename: 'index2.html',
-    //   template: './src/index.html',
-    //   chunks: ['manifest', 'vendor', 'vendors']
-    // })
+    new HtmlWebPackPlugin({
+      title: 'react app2',
+      filename: 'index2.html',
+      template: './src/index.html',
+      chunks: ['manifest', 'vendor', 'vendors']
+    })
   ]
 };
