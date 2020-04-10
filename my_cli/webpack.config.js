@@ -1,6 +1,21 @@
 const path = require('path');
+
+// 显示进程的完成进度
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+// 设置进度字体颜色
+const chalk = require('chalk');
+// 以树图的方式展示打包后的文件
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 分离css代码
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');//压缩css插件
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const copyWebpackPlugin = require('copy-webpack-plugin');//copy 用于配置static目录
+
+
+const isPro = process.env.NODE_ENV === 'production';
+let devtool = isPro ? false : 'cheap-module-source-map'
+
 module.exports = {
   // mode: 'development',
   //entry: './src/main.js', //单个入口
@@ -11,12 +26,12 @@ module.exports = {
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    publicPath: './'
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,//排除转换目录
         use: [
           {
@@ -43,9 +58,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          {
-            loader: "style-loader",
-          },
+          // {
+          //   loader: "style-loader",
+          // },
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
           }
@@ -54,9 +70,10 @@ module.exports = {
       {
         test: /\.(scss|sass)$/,
         use: [
-          {
-            loader: "style-loader",
-          },
+          // {
+          //   loader: "style-loader",
+          // },
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
           },
@@ -64,6 +81,10 @@ module.exports = {
             loader: "sass-loader",
           }
         ]
+      },
+      {
+        test:/\.png/,
+        use:['file-loader']
       }
     ]
   },
@@ -85,21 +106,42 @@ module.exports = {
     //   template: './src/index.html',
     //   chunks: ['manifest', 'vendor', 'vendors']
     // }),
-    // new CleanWebpackPlugin()
+
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',// 分离后的文件名
+      chunkFilename: '[id].css',//
+      ignoreOrder: false
+    }),
+    new OptimizeCssAssetsPlugin(),
+    new CleanWebpackPlugin(),
+    new ProgressBarPlugin({
+      format: chalk.green('Progressing') + '[:bar]' + chalk.green(':percent') + '(:elapsed seconds)',
+      clear: false
+    }),
+    // new BundleAnalyzerPlugin() //以树图的方式展示打包后的文件
+    new copyWebpackPlugin([{
+      from: __dirname + '/static',// 打包的静态资源目录地址
+      to: 'static' // 打包到dist下面的static
+    }]),
   ],
   //配置端口
-  // devServer: {
-  //   hot: true,
-  //   open: true,
-  //   port: 4321
-  // }
+  devServer: {
+    publicPath: "./",
+    //contentBase: "./dist", // 服务启动在哪一个文件夹下
+    open: false, // 启动服务时，自动打开浏览器
+    port: 8082, // 端口号
+    // proxy 跨域时模拟接口代理
+    hot: true, // devServer开启Hot Module Replacement的功能
+    hotOnly: true // 即便HMP的功能没有生效，浏览器也不能自动刷新
+  },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src/')
+      '@': path.resolve(__dirname, 'src/'),
+      // 'static': path.resolve(__dirname, 'static')
     },
     extensions: [".js", 'jsx', ".json", '.scss']
     // extensions: ['.scss','.js']
   },
-  devtool: 'cheap-module-source-map'
+  devtool: devtool
 
 };
