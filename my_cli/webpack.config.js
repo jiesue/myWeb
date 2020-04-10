@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
-  mode: 'development',
+  // mode: 'development',
   //entry: './src/main.js', //单个入口
   entry: {//多个入口
     app: './src/main.js',
@@ -23,7 +23,12 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: [
-                "@babel/env"//转换es6语法
+                "@babel/env",//转换es6语法
+                // "es2015"
+
+              ],
+              plugins: [
+                "@babel/plugin-proposal-class-properties" //高级语法 class
               ]
             }
           }
@@ -69,6 +74,7 @@ module.exports = {
       template: './src/index.html',
       // inject: true,
       chunks: ['manifest', 'vendor', 'app']
+      //第三个’app‘名称 要跟entry中的对应
       //vendor 是指提取涉及 node_modules 中的公共模块；
       //manifest 是对 vendor 模块做的缓存；
     }),
@@ -87,4 +93,13 @@ module.exports = {
   //   open: true,
   //   port: 4321
   // }
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src/')
+    },
+    extensions: [".js", 'jsx', ".json", '.scss']
+    // extensions: ['.scss','.js']
+  },
+  devtool: 'cheap-module-source-map'
+
 };
