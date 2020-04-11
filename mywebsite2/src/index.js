@@ -4,7 +4,7 @@ import Home from './page/home'
 import { BrowserRouter as Router, Route, Switch/* , NavLink, Redirect */ } from "react-router-dom";
 import './assets/css/reset.css';
 import './assets/css/variable.scss';
-
+import 'antd/dist/antd.css';
 function App() {
     return (
         <div id="app">

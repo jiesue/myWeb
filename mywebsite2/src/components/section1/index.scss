@@ -1,4 +1,4 @@
-@import '../../assets/css/variable.scss';
+@import "../../assets/css/variable.scss";
 
 .section1 {
   width: 100%;
@@ -9,59 +9,89 @@
     height: 600px;
     margin: auto;
     display: flex;
-    .left {
-      width: 600px;
-      height: 600px;
-      border: $b;
-
-      .third {
-        background-color: #ffffff;
-        width: 182px;
-        height: 182px;
-        border-radius: 50%;
-        position: relative;
+    position: relative;
+    .wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 4em;
+      height: 4em;
+      margin: auto;
+    }
+    .container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2em;
+      overflow: hidden;
+    }
+    .halfCir {
+      width: 2em;
+      height: 4em;
+      background: red;
+    }
+    .container1 {
+      left: 2em;
+    }
+    .container1 .halfCir {
+      left: 0;
+      border-radius: 0 4em 4em 0;
+      transform-origin: 0 50%;
+      animation: halfCir1 4s infinite linear;
+    }
+    .container2 {
+      left: 0;
+    }
+    .container2 .halfCir {
+      border-radius: 4em 0 0 4em;
+      transform-origin: 2em 2em;
+      animation: halfCir2 4s infinite linear;
+    }
+    @keyframes halfCir1 {
+      50%,
+      100% {
+        transform: rotateZ(180deg);
       }
-      .second {
-        background-color: #ffffff;
-        width: 182px;
-        height: 182px;
-        border-radius: 50%;
-        clip: rect(0, 91px, auto, 0);
-        position: absolute;
-        transform: rotate(0deg); //旋转30度
-        border: $b;
+    }
+    @keyframes halfCir2 {
+      0%,
+      50% {
+        transform: rotateZ(0);
       }
-      .first {
-        background-color: #6ed4bf;
-        width: 182px;
-        height: 182px;
-        border-radius: 50%;
-        clip: rect(0, auto, auto, 91px);
-        position: absolute;
-        border:1px solid blue;
-        transform: rotate(0deg); //旋转30度
+      100% {
+        transform: rotateZ(180deg);
       }
-      .third * {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-      }
-      .mask > span {
-        display: block;
-        font-size: 44px;
-        color: white;
-        line-height: 150px;
-      }
-      .mask{
-        position: absolute;
-        top:10px;
-        left: 10px;
-        width: 162px;
-        height: 162px;
-        background: rgb(209, 233, 227);
-        border-radius: 50%;
+    }
+    .wrapper::after {
+      position: absolute;
+      top: 0.5em;
+      left: 0.5em;
+      width: 3em;
+      height: 3em;
+      background: #fff;
+      border-radius: 50%;
+      content: "";
+    }
+    .cir {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      width: 0.5em;
+      height: 0.5em;
+      margin: auto;
+      background: red;
+      border-radius: 50%;
+    }
+    .cir2 {
+      transform-origin: 50% 2em;
+      animation: cir2 4s infinite linear;
+    }
+    @keyframes cir2 {
+      100% {
+        transform: rotateZ(360deg);
       }
     }
   }
