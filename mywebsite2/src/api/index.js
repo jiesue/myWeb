@@ -18,7 +18,7 @@ export default {
         method: "get",
     },
     getSystem: {
-        url: "http://bt.zyj1221.club/system?action=GetNetWork",
+        url: "/bt/system?action=GetNetWork",
         interFaceType: 'full',//完整链接
         headers: [{
             key: "Content-Type",
