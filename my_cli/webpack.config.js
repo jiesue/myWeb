@@ -20,6 +20,7 @@ module.exports = {
   // mode: 'development',
   //entry: './src/main.js', //单个入口
   entry: {//多个入口
+    babelPolyfill:'babel-polyfill',
     app: './src/main.js',
     // vendors: './src/vendors.js'
   },
@@ -83,8 +84,15 @@ module.exports = {
         ]
       },
       {
-        test:/\.png/,
-        use:['file-loader']
+        test: /\.png/,
+        use: {
+          loader: 'url-loader',
+          options: { // 配置参数
+            // 这种配置语法叫做：占位符
+            name: '[name]_[hash].[ext]', // 使用图片的名字，并使用图片的后缀
+            limit: 40960
+          }
+        }
       }
     ]
   },
@@ -124,9 +132,9 @@ module.exports = {
       to: 'static' // 打包到dist下面的static
     }]),
   ],
-  //配置端口
-  devServer: {
-    publicPath: "./",
+  //配置端口 //跑本地代码
+  devServer: { 
+    publicPath: "/",
     //contentBase: "./dist", // 服务启动在哪一个文件夹下
     open: false, // 启动服务时，自动打开浏览器
     port: 8082, // 端口号
