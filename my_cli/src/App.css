@@ -4,3 +4,9 @@
 h1 {
     color: red;
 }
+.jie{
+    width: 100%;
+    height: 300px;
+    border:1px solid red;
+    background: url(./jie.png);
+}

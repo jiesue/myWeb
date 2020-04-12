@@ -11,7 +11,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');//
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');//copy 用于配置static目录
-
+//autoprefixer 插件 为css添加浏览器前缀 postcss-loader
 
 const isPro = process.env.NODE_ENV === 'production';
 let devtool = isPro ? false : 'cheap-module-source-map'
@@ -20,14 +20,14 @@ module.exports = {
   // mode: 'development',
   //entry: './src/main.js', //单个入口
   entry: {//多个入口
-    babelPolyfill:'babel-polyfill',
+    // babelPolyfill:'babel-polyfill',
     app: './src/main.js',
     // vendors: './src/vendors.js'
   },
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: './'
+    publicPath: './'//这个路径影响所有相对路径
   },
   module: {
     rules: [
@@ -53,7 +53,18 @@ module.exports = {
       {
         test: /\.html$/,
         use: {
-          loader: 'html-loader'
+          loader: 'html-loader',
+          options: {
+            attributes: {
+              list: [
+                {
+                  tag: 'img',
+                  attribute: 'src',
+                  type: 'src',
+                }
+              ]
+            }
+          }
         }
       },
       {
@@ -62,7 +73,13 @@ module.exports = {
           // {
           //   loader: "style-loader",
           // },
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../'//抽离css后 需要修改路径
+            }
+          },
+
           {
             loader: "css-loader",
           }
@@ -74,7 +91,12 @@ module.exports = {
           // {
           //   loader: "style-loader",
           // },
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../'//抽离css后 需要修改路径
+            }
+          },
           {
             loader: "css-loader",
           },
@@ -84,16 +106,18 @@ module.exports = {
         ]
       },
       {
-        test: /\.png/,
+        test: /\.(jpg|jpeg|gif|png|svg)$/,
         use: {
           loader: 'url-loader',
           options: { // 配置参数
             // 这种配置语法叫做：占位符
             name: '[name]_[hash].[ext]', // 使用图片的名字，并使用图片的后缀
-            limit: 40960
+            limit: 40960,
+            outputPath: 'assets/img'//path的显示名称 打包后图片存的文件夹
           }
         }
       }
+
     ]
   },
   plugins: [
@@ -133,14 +157,14 @@ module.exports = {
     }]),
   ],
   //配置端口 //跑本地代码
-  devServer: { 
+  devServer: {
     publicPath: "/",
     //contentBase: "./dist", // 服务启动在哪一个文件夹下
     open: false, // 启动服务时，自动打开浏览器
     port: 8082, // 端口号
     // proxy 跨域时模拟接口代理
     hot: true, // devServer开启Hot Module Replacement的功能
-    hotOnly: true // 即便HMP的功能没有生效，浏览器也不能自动刷新
+    hotOnly: false // 即便HMP的功能没有生效，浏览器也不能自动刷新
   },
   resolve: {
     alias: {
