@@ -18,14 +18,14 @@ export default {
         method: "get",
     },
     getSystem: {
-        url: "/bt/system?action=GetNetWork",
-        interFaceType: 'full',//完整链接
+        url: "system?action=GetSystemTotal",
+        interFaceType: 'bt',
         headers: [{
             key: "Content-Type",
             value: "application/json"
         }, {
             key: 'x-cookie-token',
-            value: 'oBXMHFbmcz9mXcdOw7ZqdkTSDznG1YaATuSxSx9QVoqCxuVS'
+            value: 'j2x0DtLvU8xzBXDqk5XBuFFadhapVtkn9BkzUKhuYw2eWEQK'
         }],
         method: "post",
     }

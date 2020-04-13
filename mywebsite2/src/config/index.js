@@ -11,18 +11,19 @@ switch (process.env.NODE_ENV) {
     case 'development':
         configObj.cdn = 'https://websave-1253371045.cos.ap-guangzhou.myqcloud.com/website';
         configObj.baseUrl = '';
+        configObj.bt='bt'
         break;
 
 
     case 'production':
         configObj.cdn = 'https://websave-1253371045.cos.ap-guangzhou.myqcloud.com/website';
         configObj.baseUrl = '';
-
+        configObj.bt='bt'
         break;
     default:
         configObj.cdn = 'https://websave-1253371045.cos.ap-guangzhou.myqcloud.com/website';
         configObj.baseUrl = '';
-
+        configObj.bt='bt'
         break;
 
 }

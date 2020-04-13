@@ -20,8 +20,8 @@ module.exports = {
   // mode: 'development',
   //entry: './src/main.js', //单个入口
   entry: {//多个入口
-    // babelPolyfill:'babel-polyfill',
-    app: './src/main.js',
+  
+    app: [ 'babel-polyfill','./src/main.js'], 
     // vendors: './src/vendors.js'
   },
   output: {
@@ -112,7 +112,7 @@ module.exports = {
           options: { // 配置参数
             // 这种配置语法叫做：占位符
             name: '[name]_[hash].[ext]', // 使用图片的名字，并使用图片的后缀
-            limit: 40960,
+            limit: 10960,
             outputPath: 'assets/img'//path的显示名称 打包后图片存的文件夹
           }
         }
@@ -171,7 +171,7 @@ module.exports = {
       '@': path.resolve(__dirname, 'src/'),
       // 'static': path.resolve(__dirname, 'static')
     },
-    extensions: [".js", 'jsx', ".json", '.scss']
+    extensions: [".js", '.jsx', ".json", '.scss']
     // extensions: ['.scss','.js']
   },
   devtool: devtool
