@@ -12,7 +12,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');//copy 用于配置static目录
 //autoprefixer 插件 为css添加浏览器前缀 postcss-loader
-
+const resolve = (dir) => path.join(__dirname, dir);
 const isPro = process.env.NODE_ENV === 'production';
 let devtool = isPro ? false : 'cheap-module-source-map'
 
@@ -20,8 +20,8 @@ module.exports = {
   // mode: 'development',
   //entry: './src/main.js', //单个入口
   entry: {//多个入口
-  
-    app: [ 'babel-polyfill','./src/main.js'], 
+
+    app: ['babel-polyfill', './src/main.js'],
     // vendors: './src/vendors.js'
   },
   output: {
@@ -164,7 +164,28 @@ module.exports = {
     port: 8082, // 端口号
     // proxy 跨域时模拟接口代理
     hot: true, // devServer开启Hot Module Replacement的功能
-    hotOnly: false // 即便HMP的功能没有生效，浏览器也不能自动刷新
+    hotOnly: false, // 即便HMP的功能没有生效，浏览器也不能自动刷新
+    // proxy: { //配置多个跨域
+    //   "/api": {
+    //     target: "http://172.11.11.11:7071",
+    //     changeOrigin: true,
+    //     // ws: true,//websocket支持
+    //     secure: false,
+    //     pathRewrite: {
+    //       "^/api": "/"
+    //     }
+    //   },
+    //   "/api2": {
+    //     target: "http://172.12.12.12:2018",
+    //     changeOrigin: true,
+    //     //ws: true,//websocket支持
+    //     secure: false,
+    //     pathRewrite: {
+    //       "^/api2": "/"
+    //     }
+    //   },
+    // }
+
   },
   resolve: {
     alias: {
