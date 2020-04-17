@@ -18,15 +18,16 @@ export default {
         method: "get",
     },
     getSystem: {
-        url: "system?action=GetSystemTotal",
+        //http://bt.zyj1221.club
+        url: "/system?action=GetNetWork",
         interFaceType: 'bt',
-        headers: [{
-            key: "Content-Type",
-            value: "application/json"
-        }, {
-            key: 'x-cookie-token',
-            value: 'j2x0DtLvU8xzBXDqk5XBuFFadhapVtkn9BkzUKhuYw2eWEQK'
-        }],
+        // headers: [{
+        //     key: "Content-Type",
+        //     value: "application/json"
+        // }, {
+        //     key: 'x-cookie-token',
+        //     value: 'j2x0DtLvU8xzBXDqk5XBuFFadhapVtkn9BkzUKhuYw2eWEQK'
+        // }],
         method: "post",
     }
 }

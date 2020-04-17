@@ -91,7 +91,7 @@ const Ajax = async (apiName, params, config) => {
      configObj[newConfig.interFaceType] : url配置中有对应的key  如：jie:'/jie' 则API配置中这样  interFaceType:'jie' 用于代理
     */
     if (newConfig.interFaceType && configObj[newConfig.interFaceType]) {
-        newConfig.url = configObj[newConfig.interFaceType] + "/" + newConfig.url;
+        newConfig.url = configObj[newConfig.interFaceType] + newConfig.url;
     } else if (newConfig.interFaceType === 'full') {
     } else {
         (!process.client) && (newConfig.url = configObj.baseUrl + newConfig.url)

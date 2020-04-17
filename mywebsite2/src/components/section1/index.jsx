@@ -2,18 +2,33 @@ import React, { Component } from 'react';
 import './index.scss'
 import { Progress } from 'antd';
 import Ajax from '../../ajax'
-
+import md5 from 'md5'
+import Cookie from 'js-cookie'
 export default class Section1 extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      progress:100
+      progress: 100
     }
   }
-  componentDidMount(){
-    Ajax('getSystem').then(res=>{
+  componentDidMount() {
+
+    this.getSystem()
+
+
+
+  }
+  getSystem = () => {
+    let api_sk = 'EV15kZLxyWnKyjbWHxdFmAaLVksmIiAI';
+    let request_time = Math.round(new Date().getTime() / 1000);
+    let request_token = md5(request_time.toString() + md5(api_sk))
+    Cookie.set('request_token',request_token)
+    Ajax('getSystem', {
+      // api_sk,
+      // request_time,
+      // request_token
+    }).then(res => {
       console.log(res);
-      
     });
   }
   render() {
