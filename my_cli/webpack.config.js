@@ -27,7 +27,7 @@ module.exports = {
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: './'//这个路径影响所有相对路径
+    publicPath: ''//这个路径影响所有相对路径
   },
   module: {
     rules: [
@@ -76,13 +76,24 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: '../'//抽离css后 需要修改路径
+              publicPath: '../'//抽离css后 需要修改成正确路径
             }
           },
 
           {
             loader: "css-loader",
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                // postcss的插件
+                require('postcss-preset-env')()
+              ]
+            }
           }
+
         ]
       },
       {
@@ -99,6 +110,21 @@ module.exports = {
           },
           {
             loader: "css-loader",
+            options: {
+              // root: 'static',
+              // minimize: true,
+              importLoaders: 1//css-loader的 importLoaders: 1，是一个很重要的设置。这会让所有解析完成的css 只注入到一个style 标签里。若无此配置，每个新的css 文件在注入时，都会建立一个新的style 标签，有的浏览器里对style 标签是有数量限制的。
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                // postcss的插件
+                require('postcss-preset-env')()
+              ]
+            }
           },
           {
             loader: "sass-loader",
@@ -126,10 +152,18 @@ module.exports = {
       filename: 'index.html',
       template: './src/index.html',
       // inject: true,
-      chunks: ['manifest', 'vendor', 'app']
+      chunks: ['manifest', 'vendor', 'app'],
       //第三个’app‘名称 要跟entry中的对应
       //vendor 是指提取涉及 node_modules 中的公共模块；
       //manifest 是对 vendor 模块做的缓存；
+
+      // 压缩html代码默认有 自动判断环境是否执行 不用自己写
+      // minify: {
+      //   // 移除空格
+      //   collapseWhitespace: true,
+      //   // 移除注释
+      //   removeComments: true
+      // }
     }),
     //多入口需要执行多次
     // new HtmlWebPackPlugin({
@@ -156,6 +190,10 @@ module.exports = {
       to: 'static' // 打包到dist下面的static
     }]),
   ],
+  //二、增加下列优化（增加css）
+  // optimization: {
+  //   minimizer: [new OptimizeCSSAssetsPlugin({})]
+  // }
   //配置端口 //跑本地代码
   devServer: {
     publicPath: "/",

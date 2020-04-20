@@ -1,3 +1,5 @@
 div{
     background: rgb(206, 228, 10);
+    display: flex;
+    backface-visibility: hidden;
 }
