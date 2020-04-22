@@ -14,11 +14,26 @@ const copyWebpackPlugin = require('copy-webpack-plugin');//copy 用于配置stat
 //autoprefixer 插件 为css添加浏览器前缀 postcss-loader
 const resolve = (dir) => path.join(__dirname, dir);
 const isPro = process.env.NODE_ENV === 'production';
-let devtool = isPro ? false : 'cheap-module-source-map'
+const isDev = process.env.NODE_ENV === 'none';
+// 'cheap-module-source-map'
+// let cssLoader = isDev ? [
+//   { loader: "style-loader", },
+//   { loader: "css-loader", }
+// ] : [
+//     {
+//       loader: MiniCssExtractPlugin.loader,
+//       options: {
+//         publicPath: '../'//抽离css后 需要修改路径
+//       }
+//     },
+//     { loader: "css-loader", }
+//   ]
+
+  console.log( process.env.NODE_ENV,devtool,'123123123123123123123123123123');
 
 module.exports = {
   // mode: 'development',
-  //entry: './src/main.js', //单个入口
+  // entry: './src/main.js', //单个入口
   entry: {//多个入口
 
     app: ['babel-polyfill', './src/main.js'],
@@ -27,7 +42,7 @@ module.exports = {
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: './'//这个路径影响所有相对路径
+    publicPath: ''//这个路径影响所有相对路径
   },
   module: {
     rules: [
@@ -69,37 +84,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          // {
-          //   loader: "style-loader",
-          // },
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../'//抽离css后 需要修改路径
-            }
-          },
-
-          {
-            loader: "css-loader",
-          }
-        ]
+        use: [...cssLoader]
       },
       {
         test: /\.(scss|sass)$/,
         use: [
-          // {
-          //   loader: "style-loader",
-          // },
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '../'//抽离css后 需要修改路径
-            }
-          },
-          {
-            loader: "css-loader",
-          },
+          ...cssLoader,
           {
             loader: "sass-loader",
           }

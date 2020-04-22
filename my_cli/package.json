@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development",
-    "dev": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode none",
+    "dev": "webpack-dev-server --mode none",
+    "test": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.config.js",
     "build": "webpack --mode production",
-    "beta": "webpack --mode development"
+    "beta": "set jie=jie && webpack --mode development"
   },
   "keywords": [],
   "author": "",

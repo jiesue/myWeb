@@ -16,14 +16,17 @@ class App extends React.Component {
     }
 
     my() {
-        alert(process.env.NODE_ENV)
-        console.log(jie14);
+        alert( process.env.NODE_ENV)
+        // console.log(jie14);
     }
     jie = (e) => {
         console.log(this.state.jie.includes('jie1'));
         
     }
-
+    componentDidMount(){
+        console.log('loading~~~~~~');
+        
+    }
     render() {
         return (
             <div>
