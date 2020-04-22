@@ -116,10 +116,18 @@ module.exports = {
       filename: 'index.html',
       template: './src/index.html',
       // inject: true,
-      chunks: ['manifest', 'vendor', 'app']
+      chunks: ['manifest', 'vendor', 'app'],
       //第三个’app‘名称 要跟entry中的对应
       //vendor 是指提取涉及 node_modules 中的公共模块；
       //manifest 是对 vendor 模块做的缓存；
+
+      // 压缩html代码默认有 自动判断环境是否执行 不用自己写
+      // minify: {
+      //   // 移除空格
+      //   collapseWhitespace: true,
+      //   // 移除注释
+      //   removeComments: true
+      // }
     }),
     //多入口需要执行多次
     // new HtmlWebPackPlugin({
@@ -146,6 +154,10 @@ module.exports = {
       to: 'static' // 打包到dist下面的static
     }]),
   ],
+  //二、增加下列优化（增加css）
+  // optimization: {
+  //   minimizer: [new OptimizeCSSAssetsPlugin({})]
+  // }
   //配置端口 //跑本地代码
   devServer: {
     publicPath: "/",
