@@ -1,98 +1,15 @@
 @import "../../assets/css/variable.scss";
 
 .section1 {
-  width: 100%;
-
+  width: 1200px;
+  margin: auto;
+  height: 600px;
   border: $b;
-  .con {
-    width: 1200px;
-    height: 600px;
-    margin: auto;
-    display: flex;
-    position: relative;
-    .wrapper {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      width: 4em;
-      height: 4em;
-      margin: auto;
-    }
-    .container {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 2em;
-      overflow: hidden;
-    }
-    .halfCir {
-      width: 2em;
-      height: 4em;
-      background: red;
-    }
-    .container1 {
-      left: 2em;
-    }
-    .container1 .halfCir {
-      left: 0;
-      border-radius: 0 4em 4em 0;
-      transform-origin: 0 50%;
-      animation: halfCir1 4s infinite linear;
-    }
-    .container2 {
-      left: 0;
-    }
-    .container2 .halfCir {
-      border-radius: 4em 0 0 4em;
-      transform-origin: 2em 2em;
-      animation: halfCir2 4s infinite linear;
-    }
-    @keyframes halfCir1 {
-      50%,
-      100% {
-        transform: rotateZ(180deg);
-      }
-    }
-    @keyframes halfCir2 {
-      0%,
-      50% {
-        transform: rotateZ(0);
-      }
-      100% {
-        transform: rotateZ(180deg);
-      }
-    }
-    .wrapper::after {
-      position: absolute;
-      top: 0.5em;
-      left: 0.5em;
-      width: 3em;
-      height: 3em;
-      background: #fff;
-      border-radius: 50%;
-      content: "";
-    }
-    .cir {
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      width: 0.5em;
-      height: 0.5em;
-      margin: auto;
-      background: red;
-      border-radius: 50%;
-    }
-    .cir2 {
-      transform-origin: 50% 2em;
-      animation: cir2 4s infinite linear;
-    }
-    @keyframes cir2 {
-      100% {
-        transform: rotateZ(360deg);
-      }
-    }
+  display: flex;
+  justify-content: center;
+  .left,
+  .right {
+    width: 600px;
+    border: 1px solid #000;
   }
 }
