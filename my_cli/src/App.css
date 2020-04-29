@@ -9,5 +9,5 @@ h1 {
     height: 300px;
     border:1px solid red;
    
-    background: url(./assets/img/asset2.png);
+    /* background: url('@/assets/img/asset2.png'); */
 }

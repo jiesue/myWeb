@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode none",
-    "dev": "webpack-dev-server --mode none",
-    "test": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.config.js",
-    "build": "webpack --mode production",
-    "beta": "set jie=jie && webpack --mode development"
+    "start": "webpack-dev-server --mode none --config build/webpack.dev.config.js",
+    "dev": "webpack-dev-server --mode none --config build/webpack.dev.config.js",
+    "test": "webpack-dev-server --config build/webpack.dev.config.js",
+    "build": "webpack --mode production --config build/webpack.pro.config.js",
+    "beta": "set jie=jie && webpack --mode development --config build/webpack.beta.config.js"
   },
   "keywords": [],
   "author": "",

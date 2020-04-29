@@ -20,6 +20,8 @@ class App extends React.Component {
         // console.log(jie14);
     }
     jie = (e) => {
+        console.log(jie2);
+        
         console.log(this.state.jie.includes('jie1'));
         
     }
