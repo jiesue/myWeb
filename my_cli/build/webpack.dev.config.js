@@ -14,7 +14,19 @@ const resolve = (dir) => path.join(__dirname, dir);
 // 'cheap-module-source-map'
 let cssLoader = [
   { loader: "style-loader", },
-  { loader: "css-loader", }
+  { loader: "css-loader", },
+  // 修改loader的配置
+  {
+    loader: 'postcss-loader',
+    options: {
+      ident: 'postcss',
+      plugins: () => [
+        // postcss的插件
+        require('postcss-preset-env')()
+      ]
+    }
+  }
+
 ];
 
 
@@ -148,7 +160,7 @@ module.exports = {
     // proxy 跨域时模拟接口代理
     hot: true, // devServer开启Hot Module Replacement的功能
     hotOnly: false, // 即便HMP的功能没有生效，浏览器也不能自动刷新
-    after () {
+    after() {
       console.log('dhksfkhjasdfkjhaskjldhflhjkasdlfksahjkdfjhk');
     }, // 自定义中间件
     // proxy: { //配置多个跨域

@@ -21,7 +21,18 @@ let cssLoader = [
       publicPath: '../../'//抽离css后 需要修改路径
     }
   },
-  { loader: "css-loader", }
+  { loader: "css-loader", },
+  // 修改loader的配置
+  {
+    loader: 'postcss-loader',
+    options: {
+      ident: 'postcss',
+      plugins: () => [
+        // postcss的插件
+        require('postcss-preset-env')()
+      ]
+    }
+  }
 ]
 
 
