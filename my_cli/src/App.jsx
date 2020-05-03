@@ -1,7 +1,7 @@
 import React from 'react'
-import "@/App.css";
 import "@/App1";
 import jie from './jie.png'
+
 
 var test = () => {
     alert('jie888888888888888888888888888888888')

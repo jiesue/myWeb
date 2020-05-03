@@ -1,7 +1,9 @@
+@import './assets/css/App.css';
+// @import 'assets/css/varibles.scss';
 div{
     background: rgb(165, 154, 154);
     display: flex;
     backface-visibility: visible;
     background: url('./assets/img/asset2.png');
-
+    border:$b;
 }

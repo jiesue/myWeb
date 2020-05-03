@@ -13,12 +13,15 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');//copy 用于配置static目录
 //autoprefixer 插件 为css添加浏览器前缀 postcss-loader
 const resolve = (dir) => path.join(__dirname, dir);
+function resolveFromRootDir(name) {
+  return path.resolve(__dirname, '../src/assets/css/' + name);
+}
 // 'cheap-module-source-map'
 let cssLoader = [
   {
     loader: MiniCssExtractPlugin.loader,
     options: {
-      publicPath: '../../'//抽离css后 需要修改路径
+      publicPath: '../'//抽离css后 需要修改路径
     }
   },
   { loader: "css-loader", },
@@ -97,6 +100,15 @@ module.exports = {
           ...cssLoader,
           {
             loader: "sass-loader",
+          },
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              sourceMap: true,
+              resources: [
+                resolveFromRootDir('varibles.scss'),
+              ]
+            }
           }
         ]
       },
