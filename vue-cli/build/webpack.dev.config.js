@@ -119,7 +119,8 @@ module.exports = {
                         // 这种配置语法叫做：占位符
                         name: '[name]_[hash].[ext]', // 使用图片的名字，并使用图片的后缀
                         limit: 10960,
-                        outputPath: 'assets/img'//path的显示名称 打包后图片存的文件夹
+                        outputPath: 'assets/img',//path的显示名称 打包后图片存的文件夹
+                        esModule: false
                     }
                 }
             }
@@ -172,7 +173,7 @@ module.exports = {
     // }
     //配置端口 //跑本地代码
     devServer: {
-        publicPath: "/",
+        publicPath: "",
         //contentBase: "./dist", // 服务启动在哪一个文件夹下
         open: false, // 启动服务时，自动打开浏览器
         port: 8082, // 端口号

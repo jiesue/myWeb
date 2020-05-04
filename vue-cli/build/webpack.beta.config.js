@@ -8,6 +8,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 分离css代码
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');//压缩css插件
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const copyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 //autoprefixer 插件 为css添加浏览器前缀 postcss-loader
 const resolve = (dir) => path.join(__dirname, dir);
@@ -119,7 +120,8 @@ module.exports = {
                         // 这种配置语法叫做：占位符
                         name: '[name]_[hash].[ext]', // 使用图片的名字，并使用图片的后缀
                         limit: 10960,
-                        outputPath: 'assets/img'//path的显示名称 打包后图片存的文件夹
+                        outputPath: 'assets/img',//path的显示名称 打包后图片存的文件夹
+                        esModule: false
                     }
                 }
             }
@@ -164,7 +166,11 @@ module.exports = {
             format: chalk.green('Progressing') + '[:bar]' + chalk.green(':percent') + '(:elapsed seconds)',
             clear: false
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new copyWebpackPlugin([{
+            from: resolve('../static'),// 打包的静态资源目录地址
+            to: '../dist/static' // 打包到dist下面的static
+        }]),
     ],
     //二、增加下列优化（增加css）
     // optimization: {

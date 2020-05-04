@@ -1,6 +1,7 @@
 <template>
     <div class="jie">
         <h1>这个是我自定义的vue脚手架</h1>
+        <img src="../../static/11.png" alt="" srcset="">
     </div>
 </template>
 
@@ -13,7 +14,7 @@
 <style lang="scss" scoped>
     .jie{
         width: 100%;
-        height: 150px;
+        height: auto;
         border:1px solid red;
         h1{
             text-shadow: 1px 1px 3px rgb(112,211,212);

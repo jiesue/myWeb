@@ -45,7 +45,7 @@ module.exports = {
     },
     output: {
         filename: 'app.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../dist'),
         publicPath: ''//这个路径影响所有相对路径
     },
     module: {
@@ -119,7 +119,8 @@ module.exports = {
                         // 这种配置语法叫做：占位符
                         name: '[name]_[hash].[ext]', // 使用图片的名字，并使用图片的后缀
                         limit: 10960,
-                        outputPath: 'assets/img'//path的显示名称 打包后图片存的文件夹
+                        outputPath: 'assets/img',//path的显示名称 打包后图片存的文件夹
+                        esModule: false
                     }
                 }
             }
@@ -200,6 +201,6 @@ module.exports = {
         },
         extensions: [".js", '.vue', ".json", '.scss']
     },
-    devtool: 'cheap-module-source-map'
+    devtool: 'none'
 
 };
