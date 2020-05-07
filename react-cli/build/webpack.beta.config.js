@@ -52,6 +52,10 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
     publicPath: ''//这个路径影响所有相对路径
   },
+  build: {
+    assetsPublicPath: '/',
+    assetsSubDirectory: 'static'
+  },
   module: {
     rules: [
       {
