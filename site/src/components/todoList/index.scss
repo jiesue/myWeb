@@ -1,3 +1,4 @@
+@import '../../assets/css/variable';
 .todo-list {
     width: 400px;
     height: 500px;
@@ -21,7 +22,7 @@
             height: 32px;
             line-height: 32px;
             margin-top: 6px;
-            
+
             span:nth-of-type(1) {
                 text-align: left;
                 font-size: 20px;
@@ -41,12 +42,37 @@
                 vertical-align: middle;
             }
         }
-        .list{
+        .list {
             text-align: left;
-            li{
-                .content-text{
-                    display: inline-block;
-                    width: 332px;
+            li {
+                position: relative;
+                display: inline-block;
+                width: 378px;
+                // border: $b;
+                padding-left: 10px;
+                border-radius: 3px;
+                color:#000;
+                /deep/ .ant-checkbox-checked .ant-checkbox-inner {
+                    background-color: #00ab84;
+                    border-color: #00ab84;
+                }
+                @include ellipsis;
+                background: rgb(197, 193, 193);
+                .bar{
+                    position: absolute;
+                    height: 100%;
+                    width: 4px;
+                    background: #00ab84;
+                    left: 0;
+                }
+                .del{
+                    position: absolute;
+                    right: 6px;
+                    font-size: 16px;
+                    cursor: pointer;
+                    color:red;
+                }
+                .content-text {
                 }
             }
         }

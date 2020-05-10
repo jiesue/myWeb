@@ -1,1 +1,36 @@
-$b:1px solid red;
+$b: 1px solid red;
+$theme-color: #00ab84;
+@mixin ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@mixin ellipsis2($line) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  /* word-break: keep-all; */
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+}
+@mixin hoverliner1 {
+  background: #00ab84;
+  border: 1px solid #00ab84;
+  &:hover {
+    background: #0ecea2;
+    border: 1px solid #0ecea2;
+  }
+}
+@mixin hoverliner2 {
+  border:1px solid #00AB84;
+  color: #00AB84;
+  &:hover {
+    background-color: #eff9f7 ;
+  }
+}
+.hide {
+  display: none;
+}

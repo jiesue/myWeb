@@ -10,8 +10,8 @@ import Section1 from "../components/section1";
 function MyWeb() {
     return (
         <div className="wrap">
-            {/* <Header />
-            <Banner /> */}
+            <Header />
+            <Banner />
             <Section1 />
         </div>
     )

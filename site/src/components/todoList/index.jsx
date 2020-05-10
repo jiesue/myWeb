@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import './index.scss'
 import { Checkbox } from 'antd';
+import {
+    StopOutlined,
+    SettingFilled,
+    SmileOutlined,
+    SyncOutlined,
+    LoadingOutlined,
+} from '@ant-design/icons';
 function willdo(props) {
     return (
         <li>
@@ -25,6 +32,7 @@ class TodoList extends Component {
         return (
             <div className="todo-list">
                 <h3>ToDoList</h3>
+                <img src="static/123.png"/>
                 <div className="inner">
                     <h4><span>正在进行</span><span>{this.state.willDo.length}</span></h4>
                     <ul className="list">
@@ -32,7 +40,11 @@ class TodoList extends Component {
                             this.state.willDo.map(item => {
                                 return (
                                     <li key={item}>
-                                        <Checkbox onChange={this.onChange}>Checkbox</Checkbox>
+                                        <div className="bar"></div>
+                                        <span className="del"><StopOutlined /></span>
+                                        <Checkbox onChange={this.onChange}>
+                                            <span className="text"> {item}</span>
+                                        </Checkbox>
                                     </li>
                                 );
                             })
@@ -45,8 +57,10 @@ class TodoList extends Component {
                             this.state.hadDone.map(item => {
                                 return (
                                     <li key={item}>
+                                        <div className="bar"></div>
+                                        <span className="del"><StopOutlined /></span>
                                         <Checkbox onChange={this.onChange}>
-                                            <p className="content-text">{item}</p>
+                                            <span className="text"> {item}</span>
                                         </Checkbox>
                                     </li>
                                 );

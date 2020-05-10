@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Home from './page/home'
-import { BrowserRouter as Router, Route, Switch/* , NavLink, Redirect */ } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Switch/* , NavLink, Redirect */ } from "react-router-dom";
+import { HashRouter as Router, Route, Switch/* , NavLink, Redirect */ } from "react-router-dom";
 import './assets/css/reset.css';
 import './assets/css/variable.scss';
 import 'antd/dist/antd.css';
@@ -28,4 +29,4 @@ function App() {
 }
 
 
-ReactDOM.render(< App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
