@@ -51,7 +51,8 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,//排除转换目录
+        // exclude: /node_modules/,//排除转换目录
+        include:resolve('../src'),
         use: [
           {
             loader: 'babel-loader',
@@ -108,6 +109,7 @@ module.exports = {
       },
       {
         test: /\.(jpg|jpeg|gif|png|svg)$/,
+        include:resolve('../src'),
         use: {
           loader: 'url-loader',
           options: { // 配置参数

@@ -48,19 +48,20 @@ module.exports = {
     // vendors: './src/vendors.js'
   },
   output: {
-    filename: 'app.js',
-    path: path.resolve(__dirname, '../dist'),
+    filename: 'js/[name].js',
+    path: path.resolve(__dirname, '../dist/'),
     publicPath: ''//这个路径影响所有相对路径
   },
-  build: {
-    assetsPublicPath: '/',
-    assetsSubDirectory: 'static'
-  },
+  // build: {
+  //   assetsPublicPath: '/',
+  //   assetsSubDirectory: 'static'
+  // },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,//排除转换目录
+        //exclude: /node_modules/,//排除转换目录
+        include:resolve('../src'),
         use: [
           {
             loader: 'babel-loader',
@@ -72,7 +73,7 @@ module.exports = {
               ],
               plugins: [
                 "@babel/plugin-proposal-class-properties" //高级语法 class
-              ]
+              ],
             }
           }
         ]
@@ -118,6 +119,7 @@ module.exports = {
       },
       {
         test: /\.(jpg|jpeg|gif|png|svg)$/,
+        include:resolve('../src'),
         use: {
           loader: 'url-loader',
           options: { // 配置参数

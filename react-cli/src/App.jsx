@@ -1,7 +1,7 @@
 import React from 'react'
 import "@/App1";
 import jie from './jie.png'
-import staticimg from '../static/11.png'
+// import staticimg from '../static/11.png'
 
 var test = () => {
     alert('jie888888888888888888888888888888888')
@@ -37,7 +37,7 @@ class App extends React.Component {
                 <h3>待后续学习webpack完善。。。。。</h3>
                 <div className="jie"></div>
                 <img src={jie}></img>
-                <img src={staticimg} alt=""/>
+                <img src="../static/13.png" alt=""/>
                 <button onClick={this.my}> 点击 </button>
                 <button onClick={this.jie}> 点击22 </button>
 
