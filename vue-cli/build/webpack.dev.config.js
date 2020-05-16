@@ -9,6 +9,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 分离css代�
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');//压缩css插件
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const notifier = require('node-notifier');
+const ip = require('ip').address();
+
 //autoprefixer 插件 为css添加浏览器前缀 postcss-loader
 const resolve = (dir) => path.join(__dirname, dir);
 
@@ -166,7 +170,34 @@ module.exports = {
             format: chalk.green('Progressing') + '[:bar]' + chalk.green(':percent') + '(:elapsed seconds)',
             clear: false
         }),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        // 友好的终端错误显示方式
+        new FriendlyErrorsPlugin({
+            // 运行成功
+            compilationSuccessInfo: {
+                messages: ['你的应用程序在这里运行：',`http://${ip}:9999/`,'http://127.0.0.1:9999'],
+                notes:['有些附加说明要在成功编辑时显示']
+            },
+            //  运行错误
+            onErrors: function (severity, errors) {
+                // 可以收听插件转换和优先级的错误
+                // 严重性可以是'错误'或'警告'
+                if (severity !== 'error') {
+                    return;
+                }
+                const error = errors[0];
+                notifier.notify({
+                    title: "Webpack error",
+                    message: severity + ': ' + error.name,
+                    subtitle: error.file || '',
+                    // icon: ICON
+                });
+            },
+            //是否每次编译之间清除控制台
+            //默认为true
+            clearConsole: true,
+        }),
+
     ],
     //二、增加下列优化（增加css）
     // optimization: {
@@ -177,12 +208,14 @@ module.exports = {
         publicPath: "",
         //contentBase: "./dist", // 服务启动在哪一个文件夹下
         open: false, // 启动服务时，自动打开浏览器
-        port: 8082, // 端口号
+        port:9999, // 端口号
+        // host:'0.0.0.0', 
         // proxy 跨域时模拟接口代理
         hot: true, // devServer开启Hot Module Replacement的功能
         hotOnly: false, // 即便HMP的功能没有生效，浏览器也不能自动刷新
+        quiet: true,
         after() {
-            console.log('dhksfkhjasdfkjhaskjldhflhjkasdlfksahjkdfjhk');
+            console.log('');
         }, // 自定义中间件
         // proxy: { //配置多个跨域
         //   "/api": {

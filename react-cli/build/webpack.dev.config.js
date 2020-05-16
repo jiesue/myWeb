@@ -175,6 +175,7 @@ module.exports = {
     // proxy 跨域时模拟接口代理
     hot: true, // devServer开启Hot Module Replacement的功能
     hotOnly: false, // 即便HMP的功能没有生效，浏览器也不能自动刷新
+    quiet: true,
     after() {
       console.log('dhksfkhjasdfkjhaskjldhflhjkasdlfksahjkdfjhk');
     }, // 自定义中间件
