@@ -44,7 +44,7 @@ module.exports = {
         // vendors: './src/vendors.js'
     },
     output: {
-        filename: 'app.js',
+        filename: 'js/[name].js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: ''//这个路径影响所有相对路径
     },
@@ -52,7 +52,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /node_modules/,//排除转换目录
+                include: resolve('src'),
                 use: [
                     {
                         loader: 'babel-loader',
@@ -113,6 +113,7 @@ module.exports = {
             },
             {
                 test: /\.(jpg|jpeg|gif|png|svg)$/,
+                include: resolve('../src'),
                 use: {
                     loader: 'url-loader',
                     options: { // 配置参数
