@@ -1,6 +1,7 @@
 import React from 'react'
 import "@/App1";
 import jie from './jie.png'
+import cookie from 'js-cookie'
 // import staticimg from '../static/11.png'
 
 var test = () => {
@@ -27,7 +28,7 @@ class App extends React.Component {
     }
     componentDidMount(){
         console.log('loading~~~~~~');
-        
+        console.log(cookie.get('jie'));
     }
     render() {
         return (

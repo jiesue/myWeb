@@ -173,33 +173,28 @@ module.exports = {
             to: '../dist/static' // 打包到dist下面的static
         }]),
     ],
-    //二、增加下列优化（增加css）
-    // optimization: {
-    //   minimizer: [new OptimizeCSSAssetsPlugin({})]
-    // }
-    //配置端口 //跑本地代码
-    devServer: {
-        publicPath: "/",
-        //contentBase: "./dist", // 服务启动在哪一个文件夹下
-        open: false, // 启动服务时，自动打开浏览器
-        port: 8082, // 端口号
-        // proxy 跨域时模拟接口代理
-        hot: true, // devServer开启Hot Module Replacement的功能
-        hotOnly: false, // 即便HMP的功能没有生效，浏览器也不能自动刷新
-        after() {
-            console.log('dhksfkhjasdfkjhaskjldhflhjkasdlfksahjkdfjhk');
-        }, // 自定义中间件
-        // proxy: { //配置多个跨域
-        //   "/api": {
-        //     target: "http://172.11.11.11:7071",
-        //     changeOrigin: true,
-        //     // ws: true,//websocket支持
-        //     secure: false,
-        //     pathRewrite: {
-        //       "^/api": "/"
-        //     }
-        //   }
-
+    //二、增加????????????????
+    optimization: {
+        splitChunks: {
+            chunks: 'async',
+            minSize: 30000,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            automaticNameDelimiter: '~',
+            name: true,
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
+        }
     },
     resolve: {
         alias: {

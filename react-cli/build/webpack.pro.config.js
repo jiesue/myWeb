@@ -48,7 +48,7 @@ module.exports = {
     // vendors: './src/vendors.js'
   },
   output: {
-    filename: 'app.js',
+    filename: 'js/[name].js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: ''//这个路径影响所有相对路径
   },
@@ -172,9 +172,28 @@ module.exports = {
     }]),
   ],
   //二、增加下列优化（增加css）
-  // optimization: {
-  //   minimizer: [new OptimizeCSSAssetsPlugin({})]
-  // }
+  optimization: {
+    splitChunks: {
+      chunks: 'async',
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '../src/'),
