@@ -175,7 +175,7 @@ module.exports = {
         new FriendlyErrorsPlugin({
             // 运行成功
             compilationSuccessInfo: {
-                messages: ['你的应用程序在这里运行：',`http://${ip}:9999/`,'http://127.0.0.1:9999'],
+                messages: ['你的应用程序在这里运行：',`http://${ip}:8080/`,'http://127.0.0.1:8080'],
                 notes:['有些附加说明要在成功编辑时显示']
             },
             //  运行错误
@@ -208,7 +208,7 @@ module.exports = {
         publicPath: "",
         //contentBase: "./dist", // 服务启动在哪一个文件夹下
         open: false, // 启动服务时，自动打开浏览器
-        port:9999, // 端口号
+        port:8080, // 端口号
         // host:'0.0.0.0', 
         // proxy 跨域时模拟接口代理
         hot: true, // devServer开启Hot Module Replacement的功能

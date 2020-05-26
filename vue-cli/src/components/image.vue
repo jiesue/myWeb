@@ -24,17 +24,22 @@ export default {
 		handleChange(e) {
 			console.log(e);
             let _this = this;
-			// var file = this.$refs.select.files[0]
-			console.log(this.$refs.select.files);
-			// this.$refs.select.files.map((item) => {
-			// 	let fr = new FileReader();
-			// 	fr.onloadend = function (t) {
-			// 		console.log('123', t);
-            //         // document.getElementById("imgs").src = t.target.result;
-            //         _this.imgArr.push(t.target.result)
-			// 	};
-			// 	fr.readAsDataURL(file);
-			// })
+            // var file = this.$refs.select.files[0]
+            console.log(this.$refs.select.files);
+            let arr =Array.from(this.$refs.select.files)
+             console.log(arr);
+			arr.map((item) => {
+				let fr = new FileReader();
+				fr.onloadend = function (t) {
+					console.log('123', t);
+                    // document.getElementById("imgs").src = t.target.result;
+                    _this.imgArr.push(t.target.result)
+                };
+                fr.onprogress = function(t){
+                    console.log(t);
+                }
+				fr.readAsDataURL(item);
+			})
 
 
 		}
