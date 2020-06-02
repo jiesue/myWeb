@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Home from '@/page/home'
+import Register from '@/page/register'
 import { BrowserRouter as Router, Route, Switch/* , NavLink, Redirect */ } from "react-router-dom";
 import '@/assets/css/reset.css';
 import '@/assets/css/variable.scss';
@@ -16,6 +17,7 @@ function App() {
                 </header> */}
                 <Switch>
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/register" component={Register} />
                     {/* <Route exact path="/" render={() => (<Redirect to="/child1" />)} /> 
                     <Route path="/child1" component={Child1} />
                     <Route path="/child2" component={Child2} />
